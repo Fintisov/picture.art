@@ -1151,11 +1151,16 @@ var slider = function slider(itemSlide, prev, next) {
   slide[0].parentElement.addEventListener("mouseout", function () {
     autoSlider = setInterval(nextSlide, 3000);
   });
-  slide[0].style.display = "block";
-  slide[0].classList.add("zoomIn");
-  setTimeout(function () {
-    slide[0].classList.remove("zoomIn");
-  }, 1000);
+
+  function showFirstSlide() {
+    slide[0].style.display = "block";
+    slide[0].classList.add("zoomIn");
+    setTimeout(function () {
+      slide[0].classList.remove("zoomIn");
+    }, 1000);
+  }
+
+  showFirstSlide();
 
   try {
     var btnPrev = document.querySelector(prev),

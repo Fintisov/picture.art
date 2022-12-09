@@ -48,12 +48,14 @@ const slider = (itemSlide,
         autoSlider = setInterval(nextSlide, 3000);
     });
 
-    slide[0].style.display = "block";
-    slide[0].classList.add("zoomIn");
-    setTimeout(() => {
-        slide[0].classList.remove("zoomIn");
-    }, 1000);
-
+    function showFirstSlide() {
+        slide[0].style.display = "block";
+        slide[0].classList.add("zoomIn");
+        setTimeout(() => {
+            slide[0].classList.remove("zoomIn");
+        }, 1000);
+    }
+    showFirstSlide()
     try {
         const btnPrev = document.querySelector(prev),
             btnNext = document.querySelector(next);
