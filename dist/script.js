@@ -1108,7 +1108,7 @@ var slider = function slider(itemSlide, prev, next) {
   var animatePrev = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : "zoomIn";
   var animateNext = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : "zoomIn";
   var slide = document.querySelectorAll(itemSlide);
-  var autoSlider = setInterval(nextSlide, 3000);
+  var pauser = setInterval(nextSlide, 3000);
   var startSlide = 0;
 
   function showSlide(countSlide, animate) {
@@ -1146,16 +1146,21 @@ var slider = function slider(itemSlide, prev, next) {
     elem.style.display = "none";
   });
   slide[0].parentElement.addEventListener("mouseover", function () {
-    clearInterval(autoSlider);
+    clearInterval(pauser);
   });
   slide[0].parentElement.addEventListener("mouseout", function () {
-    autoSlider = setInterval(nextSlide, 3000);
+    pauser = setInterval(nextSlide, 3000);
   });
-  slide[0].style.display = "block";
-  slide[0].classList.add("zoomIn");
-  setTimeout(function () {
-    slide[0].classList.remove("zoomIn");
-  }, 1000);
+
+  function showFirstSlide() {
+    slide[0].style.display = "block";
+    slide[0].classList.add("zoomIn");
+    setTimeout(function () {
+      slide[0].classList.remove("zoomIn");
+    }, 1000);
+  }
+
+  showFirstSlide();
 
   try {
     var btnPrev = document.querySelector(prev),

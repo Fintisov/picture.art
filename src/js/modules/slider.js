@@ -4,7 +4,7 @@ const slider = (itemSlide,
                 animatePrev = "zoomIn",
                 animateNext = "zoomIn") => {
     const slide = document.querySelectorAll(itemSlide);
-    let autoSlider = setInterval(nextSlide, 3000);
+    let pauser = setInterval(nextSlide, 3000);
 
     let startSlide = 0;
 
@@ -41,19 +41,21 @@ const slider = (itemSlide,
     });
 
     slide[0].parentElement.addEventListener("mouseover", () => {
-        clearInterval(autoSlider)
+        clearInterval(pauser)
     });
 
     slide[0].parentElement.addEventListener("mouseout", () => {
-        autoSlider = setInterval(nextSlide, 3000);
+        pauser = setInterval(nextSlide, 3000);
     });
 
-    slide[0].style.display = "block";
-    slide[0].classList.add("zoomIn");
-    setTimeout(() => {
-        slide[0].classList.remove("zoomIn");
-    }, 1000);
-
+    function showFirstSlide() {
+        slide[0].style.display = "block";
+        slide[0].classList.add("zoomIn");
+        setTimeout(() => {
+            slide[0].classList.remove("zoomIn");
+        }, 1000);
+    }
+    showFirstSlide()
     try {
         const btnPrev = document.querySelector(prev),
             btnNext = document.querySelector(next);
