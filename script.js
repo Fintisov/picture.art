@@ -949,11 +949,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var wow_js_dist_wow_min__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! wow.js/dist/wow.min */ "./node_modules/wow.js/dist/wow.min.js");
 /* harmony import */ var wow_js_dist_wow_min__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(wow_js_dist_wow_min__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _modules_modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/modal */ "./src/js/modules/modal.js");
+/* harmony import */ var _modules_slider__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/slider */ "./src/js/modules/slider.js");
+
 
 
 document.addEventListener("DOMContentLoaded", function () {
   new wow_js_dist_wow_min__WEBPACK_IMPORTED_MODULE_0___default.a().init();
   Object(_modules_modal__WEBPACK_IMPORTED_MODULE_1__["default"])();
+  Object(_modules_slider__WEBPACK_IMPORTED_MODULE_2__["default"])(".feedback-slider-item", ".main-prev-btn", ".main-next-btn", "fadeInRight", "fadeInLeft");
+  Object(_modules_slider__WEBPACK_IMPORTED_MODULE_2__["default"])(".main-slider-item", "", "", "fadeInUp", "fadeInDown");
 });
 
 /***/ }),
@@ -1078,12 +1082,98 @@ var modal = function modal() {
 
   bindModal(".button-design", ".popup-design", ".popup-close");
   bindModal(".button-consultation", ".popup-consultation", ".popup-close");
-  bindModal(".fixed-gift", ".popup-gift", ".popup-close", true);
-  showModalByTimer(".popup-consultation", 3000);
+  bindModal(".fixed-gift", ".popup-gift", ".popup-close", true); // showModalByTimer(".popup-consultation", 3000)
+
   openByScroll(".fixed-gift");
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (modal);
+
+/***/ }),
+
+/***/ "./src/js/modules/slider.js":
+/*!**********************************!*\
+  !*** ./src/js/modules/slider.js ***!
+  \**********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var slider = function slider(itemSlide, prev, next) {
+  var animatePrev = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : "zoomIn";
+  var animateNext = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : "zoomIn";
+  var slide = document.querySelectorAll(itemSlide);
+  var autoSlider = setInterval(nextSlide, 3000);
+  var startSlide = 0;
+
+  function showSlide(countSlide, animate) {
+    slide.forEach(function (elem) {
+      elem.style.display = "none";
+      elem.classList.remove(animatePrev);
+      elem.classList.remove(animateNext);
+    });
+    slide[countSlide].classList.add(animate);
+    slide[countSlide].style.display = "block";
+  }
+
+  function prevSlide() {
+    startSlide--;
+
+    if (startSlide < 0) {
+      startSlide = slide.length - 1;
+    }
+
+    showSlide(startSlide, animatePrev);
+  }
+
+  function nextSlide() {
+    startSlide++;
+
+    if (startSlide >= slide.length) {
+      startSlide = 0;
+    }
+
+    showSlide(startSlide, animateNext);
+  }
+
+  slide.forEach(function (elem) {
+    elem.classList.add("animated");
+    elem.style.display = "none";
+  });
+  slide[0].parentElement.addEventListener("mouseover", function () {
+    clearInterval(autoSlider);
+  });
+  slide[0].parentElement.addEventListener("mouseout", function () {
+    autoSlider = setInterval(nextSlide, 3000);
+  });
+  slide[0].style.display = "block";
+  slide[0].classList.add("zoomIn");
+  setTimeout(function () {
+    slide[0].classList.remove("zoomIn");
+  }, 1000);
+
+  try {
+    var btnPrev = document.querySelector(prev),
+        btnNext = document.querySelector(next);
+    btnPrev.addEventListener("click", function (e) {
+      if (e.target.closest(prev)) {
+        prevSlide();
+      }
+    });
+    btnNext.addEventListener("click", function (e) {
+      if (e.target.closest(next)) {
+        nextSlide();
+      }
+    });
+  } catch (e) {}
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (slider);
 
 /***/ })
 
