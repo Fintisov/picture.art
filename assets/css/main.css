@@ -1335,6 +1335,7 @@ h4 {
     max-width: 35rem;
     left: 50%;
     top: 20%;
+    overflow: hidden;
     background-color: #ededed;
     border-radius: 4px;
     transform: translateX(-50%) !important;
@@ -1485,6 +1486,27 @@ h4 {
     border-radius: 4px;
     transform: translateX(-50%) !important;
     padding: 3rem 6rem 4rem 6rem;
+}
+
+.gift-hidden {
+    animation-name: bounceOut;
+    animation-iteration-count: 1;
+    visibility: hidden;
+    transition-property: visibility;
+    transition-delay: 0.75s;
+}
+
+.modal-show {
+    display: block;
+    animation: fadeIn 0.3s;
+}
+
+.status {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    padding: 20px 0;
 }
 
 @media (max-width: 1399px) {
@@ -2090,15 +2112,3 @@ h4 {
     }
 }
 
-.gift-hidden {
-    animation-name: bounceOut;
-    animation-iteration-count: 1;
-    visibility: hidden;
-    transition-property: visibility;
-    transition-delay: 0.75s;
-}
-
-.modal-show {
-    display: block;
-    animation: fadeIn 0.3s;
-}
