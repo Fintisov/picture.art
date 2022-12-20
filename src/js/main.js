@@ -1,6 +1,7 @@
 import wow from "wow.js/dist/wow.min";
 import modal from "./modules/modal";
 import slider from "./modules/slider";
+import sendForms from "./modules/sendForms";
 
 document.addEventListener("DOMContentLoaded", () => {
     new wow().init();
@@ -17,4 +18,6 @@ document.addEventListener("DOMContentLoaded", () => {
         "fadeInUp",
         "fadeInDown",
     );
+
+    sendForms();
 })

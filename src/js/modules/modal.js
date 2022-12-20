@@ -10,6 +10,10 @@ const modal = () => {
 
 
         function showWindow() {
+            if (modalWindow.querySelector("form")) {
+                modalWindow.querySelector("form").classList.remove("bounceIn");
+            }
+
             modalWindow.classList.add("modal-show");
             body.style.cssText = `
             overflow: hidden;
