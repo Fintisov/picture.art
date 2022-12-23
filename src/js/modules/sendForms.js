@@ -79,7 +79,9 @@ const sendForms = () => {
                     el.parentNode.append(statusMessage)
                 }, 750)
 
-                const url = (el.closest(".popup-design")) ? path.design : path.consultation;
+                const url = (el.closest(".popup-design") || el.closest(".form_calc")) ?
+                    path.design : path.consultation;
+
                 postData(url, formData)
                     .then(res => {
                         console.log(res);
