@@ -4465,7 +4465,7 @@ var sendForms = function sendForms() {
         el.style.display = "none";
         el.parentNode.append(statusMessage);
       }, 750);
-      var url = el.closest(".popup-design") ? path.design : path.consultation;
+      var url = el.closest(".popup-design") || el.closest(".form_calc") ? path.design : path.consultation;
       postData(url, formData).then(function (res) {
         console.log(res);
         statusImg.setAttribute("src", statusForm.ok);
