@@ -2,6 +2,7 @@ import wow from "wow.js/dist/wow.min";
 import modal from "./modules/modal";
 import slider from "./modules/slider";
 import sendForms from "./modules/sendForms";
+import inputMask from "./modules/inputMask";
 
 document.addEventListener("DOMContentLoaded", () => {
     new wow().init();
@@ -20,4 +21,6 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
     sendForms();
+
+    inputMask("[name='phone']");
 })
