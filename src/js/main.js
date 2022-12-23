@@ -3,6 +3,7 @@ import modal from "./modules/modal";
 import slider from "./modules/slider";
 import sendForms from "./modules/sendForms";
 import inputMask from "./modules/inputMask";
+import checkTextInput from "./modules/checkTextInput";
 
 document.addEventListener("DOMContentLoaded", () => {
     new wow().init();
@@ -23,4 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
     sendForms();
 
     inputMask("[name='phone']");
+
+    checkTextInput("[name='name']");
+    checkTextInput("[name='message']");
 })
