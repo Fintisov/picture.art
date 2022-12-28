@@ -4330,6 +4330,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_sendForms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/sendForms */ "./src/js/modules/sendForms.js");
 /* harmony import */ var _modules_inputMask__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/inputMask */ "./src/js/modules/inputMask.js");
 /* harmony import */ var _modules_checkTextInput__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/checkTextInput */ "./src/js/modules/checkTextInput.js");
+/* harmony import */ var _modules_showMoreImg__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/showMoreImg */ "./src/js/modules/showMoreImg.js");
+
 
 
 
@@ -4345,6 +4347,7 @@ document.addEventListener("DOMContentLoaded", function () {
   Object(_modules_inputMask__WEBPACK_IMPORTED_MODULE_4__["default"])("[name='phone']");
   Object(_modules_checkTextInput__WEBPACK_IMPORTED_MODULE_5__["default"])("[name='name']");
   Object(_modules_checkTextInput__WEBPACK_IMPORTED_MODULE_5__["default"])("[name='message']");
+  Object(_modules_showMoreImg__WEBPACK_IMPORTED_MODULE_6__["default"])(".button-styles", ".styles-2");
 });
 
 /***/ }),
@@ -4729,6 +4732,38 @@ var sendForms = function sendForms() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (sendForms);
+
+/***/ }),
+
+/***/ "./src/js/modules/showMoreImg.js":
+/*!***************************************!*\
+  !*** ./src/js/modules/showMoreImg.js ***!
+  \***************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var showMoreImg = function showMoreImg(trigger, items) {
+  var cards = document.querySelectorAll(items),
+      btn = document.querySelector(trigger);
+  cards.forEach(function (elem) {
+    elem.classList.add("animated", "fadeIn");
+  });
+  btn.addEventListener("click", function () {
+    cards.forEach(function (elem) {
+      elem.classList.remove("hidden-lg", "hidden-md", "hidden-sm", "hidden-xs", "styles-2");
+      elem.classList.add("col-sm-3", "col-sm-offset-0", "col-xs-10", "col-xs-offset-1");
+    });
+    btn.remove();
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (showMoreImg);
 
 /***/ }),
 
