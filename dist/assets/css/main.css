@@ -1509,6 +1509,18 @@ h4 {
     padding: 20px 0;
 }
 
+.alert-error {
+    padding: 14px;
+    margin: 10px 0;
+
+    font-family: 'Circe Regular', sans-serif;
+
+    border: 2px solid red;
+    border-radius: 10px;
+    background-color: rgba(255, 84, 84, 0.75);
+    text-align: center;
+}
+
 @media (max-width: 1399px) {
     .paints {
         display: none;

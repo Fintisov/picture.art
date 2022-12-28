@@ -1,3 +1,5 @@
+import {postData} from "../services/request";
+
 const sendForms = () => {
     const forms = document.querySelectorAll("form"),
         upload = document.querySelectorAll("[type='file']");
@@ -14,19 +16,6 @@ const sendForms = () => {
     const path = {
         design: "assets/design.php",
         consultation: "assets/server.php",
-    };
-
-    const postData = async (url, data) => {
-        let response = await fetch(url, {
-            method: "POST",
-            body: data
-        });
-
-        if (!response.ok) {
-            throw new Error(`Error : ${response.status}`);
-        }
-
-        return await response.text();
     };
 
     const clearForms = () => {

@@ -4,6 +4,7 @@ const checkTextInput = (select) => {
     inputs.forEach(elem => {
         elem.addEventListener("input", (e) => {
             e.target.value = e.target.value.replace(/[^а-яё 0-9]/ig, '');
+            e.target.value = e.target.value.trim();
         })
     })
 }

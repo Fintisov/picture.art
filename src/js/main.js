@@ -29,5 +29,5 @@ document.addEventListener("DOMContentLoaded", () => {
     checkTextInput("[name='name']");
     checkTextInput("[name='message']");
 
-    showMoreImg(".button-styles", ".styles-2");
+    showMoreImg(".button-styles", "#styles .row");
 })
