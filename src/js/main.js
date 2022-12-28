@@ -4,6 +4,7 @@ import slider from "./modules/slider";
 import sendForms from "./modules/sendForms";
 import inputMask from "./modules/inputMask";
 import checkTextInput from "./modules/checkTextInput";
+import showMoreImg from "./modules/showMoreImg";
 
 document.addEventListener("DOMContentLoaded", () => {
     new wow().init();
@@ -27,4 +28,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     checkTextInput("[name='name']");
     checkTextInput("[name='message']");
+
+    showMoreImg(".button-styles", ".styles-2");
 })
