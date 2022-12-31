@@ -26,6 +26,8 @@ const sendForms = () => {
         upload.forEach(item => {
             item.previousElementSibling.textContent = "Файл не выбран";
         })
+
+
     };
 
     upload.forEach(item => {
@@ -41,6 +43,12 @@ const sendForms = () => {
         el.addEventListener("submit", (e) => {
                 e.preventDefault();
                 const formData = new FormData(el);
+
+                if (el.querySelector(".calc-price")) {
+                    formData.append("price", el.querySelector(".calc-price").textContent);
+
+                    el.querySelector(".calc-price").textContent = "Для расчета нужно выбрать размер картины и материал картины";
+                }
 
                 const statusMessage = document.createElement("div");
                 statusMessage.classList.add("status", "animated", "bounceIn");
@@ -84,6 +92,7 @@ const sendForms = () => {
                     })
                     .finally(() => {
                         clearForms();
+
                         setTimeout(() => {
                             el.classList.remove("fadeOutUp");
                             el.style.display = "block";

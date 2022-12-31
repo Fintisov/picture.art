@@ -611,6 +611,7 @@ h4 {
     display: block;
     font-size: 1.9rem;
     padding: 2rem 0;
+    cursor: pointer;
 }
 
 .calc .promocode {
@@ -991,7 +992,7 @@ h4 {
 .promo-2 img {
     max-width: 100%;
     position: relative;
-    right: -10rem;
+    right: 0;
 }
 
 .feedback {

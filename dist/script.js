@@ -4499,6 +4499,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_inputMask__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/inputMask */ "./src/js/modules/inputMask.js");
 /* harmony import */ var _modules_checkTextInput__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/checkTextInput */ "./src/js/modules/checkTextInput.js");
 /* harmony import */ var _modules_showMoreImg__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/showMoreImg */ "./src/js/modules/showMoreImg.js");
+/* harmony import */ var _modules_calculator__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/calculator */ "./src/js/modules/calculator.js");
+
 
 
 
@@ -4516,7 +4518,56 @@ document.addEventListener("DOMContentLoaded", function () {
   Object(_modules_checkTextInput__WEBPACK_IMPORTED_MODULE_5__["default"])("[name='name']");
   Object(_modules_checkTextInput__WEBPACK_IMPORTED_MODULE_5__["default"])("[name='message']");
   Object(_modules_showMoreImg__WEBPACK_IMPORTED_MODULE_6__["default"])(".button-styles", "#styles .row");
+  Object(_modules_calculator__WEBPACK_IMPORTED_MODULE_7__["default"])("#size", "#material", "#options", ".promocode", ".calc-price");
 });
+
+/***/ }),
+
+/***/ "./src/js/modules/calculator.js":
+/*!**************************************!*\
+  !*** ./src/js/modules/calculator.js ***!
+  \**************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var core_js_modules_es_string_trim__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.string.trim */ "./node_modules/core-js/modules/es.string.trim.js");
+/* harmony import */ var core_js_modules_es_string_trim__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_trim__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _services_request__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../services/request */ "./src/js/services/request.js");
+
+
+
+var calculator = function calculator(size, material, options, promo, price) {
+  var sizeBlock = document.querySelector(size),
+      materialBlock = document.querySelector(material),
+      optionsBlock = document.querySelector(options),
+      promoBlock = document.querySelector(promo),
+      priceBlock = document.querySelector(price);
+
+  function calcFunc() {
+    var sum = 0;
+    Object(_services_request__WEBPACK_IMPORTED_MODULE_1__["getResurs"])("./assets/db.json").then(function (res) {
+      var data = res.calcPrice;
+      sum = Math.round(data.size[sizeBlock.value] * data.material[materialBlock.value] + data.options[optionsBlock.value]);
+
+      if (sizeBlock.value === "" || materialBlock.value === "") {
+        priceBlock.textContent = "Пожалуйста, сделайте выбор размера и материала картины.";
+      } else if (promoBlock.value.trim() === "IWANTPOPART") {
+        priceBlock.textContent = Math.round(sum * 0.7) + " грн";
+      } else {
+        priceBlock.textContent = sum + " грн";
+      }
+    });
+  }
+
+  sizeBlock.addEventListener("change", calcFunc);
+  materialBlock.addEventListener("change", calcFunc);
+  optionsBlock.addEventListener("change", calcFunc);
+  promoBlock.addEventListener("input", calcFunc);
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (calculator);
 
 /***/ }),
 
@@ -4827,6 +4878,12 @@ var sendForms = function sendForms() {
     el.addEventListener("submit", function (e) {
       e.preventDefault();
       var formData = new FormData(el);
+
+      if (el.querySelector(".calc-price")) {
+        formData.append("price", el.querySelector(".calc-price").textContent);
+        el.querySelector(".calc-price").textContent = "Для расчета нужно выбрать размер картины и материал картины";
+      }
+
       var statusMessage = document.createElement("div");
       statusMessage.classList.add("status", "animated", "bounceIn");
       statusMessage.style.cssText = "\n                                        display: flex;\n                                        justify-content: center;\n                                        align-items: center;\n                                    ";
