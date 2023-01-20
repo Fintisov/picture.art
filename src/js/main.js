@@ -6,6 +6,7 @@ import inputMask from "./modules/inputMask";
 import checkTextInput from "./modules/checkTextInput";
 import showMoreImg from "./modules/showMoreImg";
 import calculator from "./modules/calculator";
+import filter from "./modules/filter";
 
 document.addEventListener("DOMContentLoaded", () => {
     new wow().init();
@@ -33,4 +34,6 @@ document.addEventListener("DOMContentLoaded", () => {
     showMoreImg(".button-styles", "#styles .row");
 
     calculator("#size", "#material", "#options", ".promocode", ".calc-price");
+
+    filter();
 })
