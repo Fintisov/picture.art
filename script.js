@@ -4501,6 +4501,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_showMoreImg__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/showMoreImg */ "./src/js/modules/showMoreImg.js");
 /* harmony import */ var _modules_calculator__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/calculator */ "./src/js/modules/calculator.js");
 /* harmony import */ var _modules_filter__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./modules/filter */ "./src/js/modules/filter.js");
+/* harmony import */ var _modules_pictureSize__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./modules/pictureSize */ "./src/js/modules/pictureSize.js");
+
 
 
 
@@ -4522,6 +4524,7 @@ document.addEventListener("DOMContentLoaded", function () {
   Object(_modules_showMoreImg__WEBPACK_IMPORTED_MODULE_6__["default"])(".button-styles", "#styles .row");
   Object(_modules_calculator__WEBPACK_IMPORTED_MODULE_7__["default"])("#size", "#material", "#options", ".promocode", ".calc-price");
   Object(_modules_filter__WEBPACK_IMPORTED_MODULE_8__["default"])();
+  Object(_modules_pictureSize__WEBPACK_IMPORTED_MODULE_9__["default"])(".sizes-block");
 });
 
 /***/ }),
@@ -4861,6 +4864,57 @@ var modal = function modal() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (modal);
+
+/***/ }),
+
+/***/ "./src/js/modules/pictureSize.js":
+/*!***************************************!*\
+  !*** ./src/js/modules/pictureSize.js ***!
+  \***************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var core_js_modules_es_array_slice__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.array.slice */ "./node_modules/core-js/modules/es.array.slice.js");
+/* harmony import */ var core_js_modules_es_array_slice__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_slice__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+var pictureSize = function pictureSize(sizeBlocks) {
+  var blocks = document.querySelectorAll(sizeBlocks);
+
+  function showImg(block) {
+    var p = block.querySelectorAll("p:not(.sizes-hit)");
+    var img = block.querySelector("img");
+    p.forEach(function (elem) {
+      elem.style.display = "none";
+    });
+    img.src = img.src.slice(0, -4) + "-1.png";
+  }
+
+  function hiddenImg(block) {
+    var p = block.querySelectorAll("p:not(.sizes-hit)");
+    var img = block.querySelector("img");
+    p.forEach(function (elem) {
+      elem.style.display = "block";
+    });
+    img.src = img.src.slice(0, -6) + ".png";
+  }
+
+  blocks.forEach(function (item) {
+    item.addEventListener("mouseenter", function () {
+      showImg(item);
+    });
+    item.addEventListener("mouseleave", function () {
+      hiddenImg(item);
+    });
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (pictureSize);
 
 /***/ }),
 
