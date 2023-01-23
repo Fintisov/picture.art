@@ -9,39 +9,31 @@ import showMoreImg from "./modules/showMoreImg";
 import calculator from "./modules/calculator";
 import filter from "./modules/filter";
 import pictureSize from "./modules/pictureSize";
+import accordion from "./modules/accordion";
 
 document.addEventListener("DOMContentLoaded", () => {
     new wow().init();
-
     modal();
-
     slider(".feedback-slider-item",
         ".main-prev-btn",
         ".main-next-btn",
         "fadeInRight",
         "fadeInLeft"
     );
-
     slider(".main-slider-item",
         "",
         "",
         "fadeInUp",
         "fadeInDown",
     );
-
     sendForms();
-
     inputMask("[name='phone']");
-
     checkTextInput("[name='name']");
-
     checkTextInput("[name='message']");
-
     showMoreImg(".button-styles", "#styles .row");
-
     calculator("#size", "#material", "#options", ".promocode", ".calc-price");
 
     filter();
-
     pictureSize(".sizes-block");
+    accordion(".accordion-heading");
 })
