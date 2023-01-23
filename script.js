@@ -4502,6 +4502,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_calculator__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/calculator */ "./src/js/modules/calculator.js");
 /* harmony import */ var _modules_filter__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./modules/filter */ "./src/js/modules/filter.js");
 /* harmony import */ var _modules_pictureSize__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./modules/pictureSize */ "./src/js/modules/pictureSize.js");
+/* harmony import */ var _modules_accordion__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./modules/accordion */ "./src/js/modules/accordion.js");
+
 
 
 
@@ -4525,7 +4527,56 @@ document.addEventListener("DOMContentLoaded", function () {
   Object(_modules_calculator__WEBPACK_IMPORTED_MODULE_7__["default"])("#size", "#material", "#options", ".promocode", ".calc-price");
   Object(_modules_filter__WEBPACK_IMPORTED_MODULE_8__["default"])();
   Object(_modules_pictureSize__WEBPACK_IMPORTED_MODULE_9__["default"])(".sizes-block");
+  Object(_modules_accordion__WEBPACK_IMPORTED_MODULE_10__["default"])(".accordion-heading");
 });
+
+/***/ }),
+
+/***/ "./src/js/modules/accordion.js":
+/*!*************************************!*\
+  !*** ./src/js/modules/accordion.js ***!
+  \*************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__);
+
+
+/**
+ * Create accordion
+ *
+ * @function
+ * @param {string} trigger - accordion trigger
+ *
+ * @module
+ *
+ */
+var accordion = function accordion(trigger) {
+  var accordionTrigger = document.querySelectorAll(trigger);
+  accordionTrigger.forEach(function (elem) {
+    elem.addEventListener("click", function () {
+      if (!this.classList.contains("active")) {
+        accordionTrigger.forEach(function (elem) {
+          elem.classList.remove("active");
+          elem.nextElementSibling.style.maxHeight = 0;
+          elem.nextElementSibling.classList.remove("show");
+        });
+        this.classList.add("active");
+        this.nextElementSibling.classList.add("show");
+        this.nextElementSibling.style.maxHeight = this.nextElementSibling.scrollHeight + 60 + "px";
+      } else {
+        this.classList.remove("active");
+        this.nextElementSibling.classList.remove("show");
+        this.nextElementSibling.style.maxHeight = 0;
+      }
+    });
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (accordion);
 
 /***/ }),
 
