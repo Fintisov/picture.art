@@ -127,6 +127,11 @@ h4 {
     cursor: pointer;
 }
 
+.header {
+    position: relative;
+    z-index: 2;
+}
+
 .header .container {
     padding: 0;
 }
