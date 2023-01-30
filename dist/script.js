@@ -4504,6 +4504,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_pictureSize__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./modules/pictureSize */ "./src/js/modules/pictureSize.js");
 /* harmony import */ var _modules_accordion__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./modules/accordion */ "./src/js/modules/accordion.js");
 /* harmony import */ var _modules_burger__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./modules/burger */ "./src/js/modules/burger.js");
+/* harmony import */ var _modules_smoothScroll__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./modules/smoothScroll */ "./src/js/modules/smoothScroll.js");
+
 
 
 
@@ -4531,6 +4533,7 @@ document.addEventListener("DOMContentLoaded", function () {
   Object(_modules_pictureSize__WEBPACK_IMPORTED_MODULE_9__["default"])(".sizes-block");
   Object(_modules_accordion__WEBPACK_IMPORTED_MODULE_10__["default"])(".accordion-heading");
   Object(_modules_burger__WEBPACK_IMPORTED_MODULE_11__["default"])(".burger", ".burger-menu");
+  Object(_modules_smoothScroll__WEBPACK_IMPORTED_MODULE_12__["default"])(30);
 });
 
 /***/ }),
@@ -5298,6 +5301,68 @@ var slider = function slider(itemSlide, prev, next) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (slider);
+
+/***/ }),
+
+/***/ "./src/js/modules/smoothScroll.js":
+/*!****************************************!*\
+  !*** ./src/js/modules/smoothScroll.js ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var smoothScroll = function smoothScroll(speed) {
+  var triggerScroll = document.querySelectorAll('a');
+  var btnUp = document.querySelector("[href='#up']"); // (show / hidden) uo button
+
+  document.addEventListener("scroll", function () {
+    if (document.documentElement.clientHeight <= document.documentElement.scrollTop) {
+      btnUp.classList.add("animated", "fadeIn");
+      btnUp.classList.remove("fadeOut");
+    } else {
+      btnUp.classList.add("fadeOut");
+      btnUp.classList.remove("fadeIn");
+    }
+  });
+  triggerScroll.forEach(function (elem) {
+    if (elem.hash !== "") {
+      var element = document.documentElement,
+          to = document.querySelector(elem.hash).offsetTop;
+      elem.addEventListener("click", function (event) {
+        event.preventDefault();
+        var scrolling = null;
+
+        if (element.scrollTop < to) {
+          scrolling = setInterval(function () {
+            if (element.scrollTop < to) {
+              element.scrollTop += speed;
+            } else {
+              clearInterval(scrolling);
+            }
+          }, 4);
+        }
+
+        if (element.scrollTop > to) {
+          scrolling = setInterval(function () {
+            if (element.scrollTop > to) {
+              element.scrollTop -= speed;
+            } else {
+              clearInterval(scrolling);
+            }
+          }, 4);
+        }
+      });
+    }
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (smoothScroll);
 
 /***/ }),
 
