@@ -12,6 +12,7 @@ import pictureSize from "./modules/pictureSize";
 import accordion from "./modules/accordion";
 import burger from "./modules/burger";
 import smoothScroll from "./modules/smoothScroll";
+import drop from "./modules/drop";
 
 document.addEventListener("DOMContentLoaded", () => {
     new wow().init();
@@ -39,4 +40,5 @@ document.addEventListener("DOMContentLoaded", () => {
     accordion(".accordion-heading");
     burger(".burger",".burger-menu");
     smoothScroll(30);
+    drop();
 })
