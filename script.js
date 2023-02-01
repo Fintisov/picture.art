@@ -4505,6 +4505,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_accordion__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./modules/accordion */ "./src/js/modules/accordion.js");
 /* harmony import */ var _modules_burger__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./modules/burger */ "./src/js/modules/burger.js");
 /* harmony import */ var _modules_smoothScroll__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./modules/smoothScroll */ "./src/js/modules/smoothScroll.js");
+/* harmony import */ var _modules_drop__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./modules/drop */ "./src/js/modules/drop.js");
+
 
 
 
@@ -4534,6 +4536,7 @@ document.addEventListener("DOMContentLoaded", function () {
   Object(_modules_accordion__WEBPACK_IMPORTED_MODULE_10__["default"])(".accordion-heading");
   Object(_modules_burger__WEBPACK_IMPORTED_MODULE_11__["default"])(".burger", ".burger-menu");
   Object(_modules_smoothScroll__WEBPACK_IMPORTED_MODULE_12__["default"])(30);
+  Object(_modules_drop__WEBPACK_IMPORTED_MODULE_13__["default"])();
 });
 
 /***/ }),
@@ -4700,6 +4703,116 @@ var checkTextInput = function checkTextInput(select) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (checkTextInput);
+
+/***/ }),
+
+/***/ "./src/js/modules/drop.js":
+/*!********************************!*\
+  !*** ./src/js/modules/drop.js ***!
+  \********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var core_js_modules_es_array_concat__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.array.concat */ "./node_modules/core-js/modules/es.array.concat.js");
+/* harmony import */ var core_js_modules_es_array_concat__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_concat__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_es_array_join__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.array.join */ "./node_modules/core-js/modules/es.array.join.js");
+/* harmony import */ var core_js_modules_es_array_join__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_join__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var core_js_modules_es_array_slice__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es.array.slice */ "./node_modules/core-js/modules/es.array.slice.js");
+/* harmony import */ var core_js_modules_es_array_slice__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_slice__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var core_js_modules_es_function_name__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/es.function.name */ "./node_modules/core-js/modules/es.function.name.js");
+/* harmony import */ var core_js_modules_es_function_name__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_function_name__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var core_js_modules_es_object_to_string__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! core-js/modules/es.object.to-string */ "./node_modules/core-js/modules/es.object.to-string.js");
+/* harmony import */ var core_js_modules_es_object_to_string__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var core_js_modules_es_promise__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! core-js/modules/es.promise */ "./node_modules/core-js/modules/es.promise.js");
+/* harmony import */ var core_js_modules_es_promise__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_promise__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var core_js_modules_es_promise_finally__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! core-js/modules/es.promise.finally */ "./node_modules/core-js/modules/es.promise.finally.js");
+/* harmony import */ var core_js_modules_es_promise_finally__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_promise_finally__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var core_js_modules_es_string_split__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! core-js/modules/es.string.split */ "./node_modules/core-js/modules/es.string.split.js");
+/* harmony import */ var core_js_modules_es_string_split__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_split__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _services_request__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../services/request */ "./src/js/services/request.js");
+
+
+
+
+
+
+
+
+
+// dragenter
+// dragleave
+// dragover
+// drop
+
+
+var drop = function drop() {
+  function highlight(item) {
+    item.closest(".file_upload").style.cssText = "\n                        background-color: #00000021;\n                        border: 2px solid #ff0000;\n                        border-radius: 5px;\n                        padding: 5px;\n                ";
+  }
+
+  function unHighlight(item) {
+    item.closest(".file_upload").style.cssText = "\n                    background-color: transparent;\n                    border: none;\n                    border-radius: 5px;\n                    padding: 0;\n                ";
+  }
+
+  var upload = document.querySelectorAll("[name='upload']");
+  ["dragenter", "dragleave", "dragover", "drop"].forEach(function (eventsDrag) {
+    upload.forEach(function (item) {
+      item.addEventListener(eventsDrag, function (event) {
+        event.preventDefault();
+      });
+    });
+  });
+  ["dragenter", "dragover"].forEach(function (eventDragenter) {
+    upload.forEach(function (item) {
+      item.addEventListener(eventDragenter, function () {
+        return highlight(item);
+      });
+    });
+  });
+  ["dragleave", "drop"].forEach(function (eventDragenter) {
+    upload.forEach(function (item) {
+      item.addEventListener(eventDragenter, function () {
+        return unHighlight(item);
+      });
+    });
+  });
+  upload.forEach(function (input) {
+    ["change", "drop"].forEach(function (events) {
+      input.addEventListener(events, function (e) {
+        if (e.type === "drop") {
+          input.files = e.dataTransfer.files;
+        }
+
+        var uploadStr = input.files[0].name.split(".");
+        input.previousElementSibling.textContent = uploadStr[0].length > 6 ? "".concat(uploadStr[0].slice(0, 6), "...").concat(uploadStr[1]) : uploadStr.join(".");
+        var alertForm = input.previousElementSibling;
+
+        if (!input.closest("form")) {
+          var formData = new FormData();
+          formData.append("photo", input.files[0]);
+          console.log(formData);
+          Object(_services_request__WEBPACK_IMPORTED_MODULE_9__["postData"])("assets/design.php", formData).then(function (elem) {
+            console.log(elem);
+            alertForm.textContent = "Данные отправлены";
+          }).catch(function (error) {
+            console.error(error);
+            alertForm.textContent = "Произошла ошибка";
+          }).finally(function () {
+            setInterval(function () {
+              alertForm.textContent = "Файл не выбран";
+            }, 3000);
+          });
+        }
+      });
+    });
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (drop);
 
 /***/ }),
 
@@ -5319,7 +5432,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var smoothScroll = function smoothScroll(speed) {
   var triggerScroll = document.querySelectorAll('a');
-  var btnUp = document.querySelector("[href='#up']"); // (show / hidden) uo button
+  var btnUp = document.querySelector("[href='#up']"); // (show / hidden) up button
 
   document.addEventListener("scroll", function () {
     if (document.documentElement.clientHeight <= document.documentElement.scrollTop) {
